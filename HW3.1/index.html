@@ -1,0 +1,122 @@
+
+<html>
+	<head>
+		<script src="Field.js"></script>
+		<script src="Transformable.js"></script>
+		<script src="Interactable.js"></script>
+		<script src="Renderable.js"></script>
+		<script src="Layer.js"></script>
+		<script src="Shapes.js"></script>
+		<script src="Color.js"></script>
+		<script src="Program.js"></script>
+	</head>
+	<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+		<!--style="visibility: hidden;"-->
+		<!-- Always shows a header, even in smaller screens. -->
+        <div class="mdl-layout__container">
+		    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+			    <header class="mdl-layout__header">
+				    <div class="mdl-layout__header-row">
+					<!-- Title -->
+					<!-- Add spacer, to align navigation to the right -->
+					<!-- Navigation. We hide it in small screens. -->
+					    <nav class="mdl-navigation">
+						    <a class="mdl-navigation__link" href="">Redo 
+							    <div id="tt3" class="icon material-icons">redo</div>
+						    </a>
+						    <a class="mdl-navigation__link" href="">Undo 
+							    <div id="tt3" class="icon material-icons">undo</div>
+						</a>
+						<a class="mdl-navigation__link" href="">Circle 
+							<div id="tt3" class="icon material-icons">circle</div>
+						</a>
+						<a class="mdl-navigation__link" href="">Rectangle 
+							<div id="tt3" class="icon material-icons">aspect_ratio</div>
+						</a>
+						<a class="mdl-navigation__link" href="">Line 
+							<div id="tt3" class="icon material-icons">mode_edit_outline</div>
+						</a>
+						<a class="mdl-navigation__link" href="">Inscribed Polygon 
+							<div id="tt3" class="icon material-icons">change_history</div>
+						</a>
+					</nav>
+					<div class="mdl-layout-spacer"></div>
+				</div>
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">Options</span>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="">
+						<div id="tt3" class="icon material-icons">download</div> Save as JSON
+					</a>
+					<a class="mdl-navigation__link" href="">
+						<div id="tt3" class="icon material-icons">upload</div> Load JSON
+					</a>
+					<a class="mdl-navigation__link" href="">
+						<div id="tt3" class="icon material-icons">image</div> Render to PNG
+					</a>
+					<a class="mdl-navigation__link" href="">
+						<div id="tt3" class="icon material-icons">image</div> Load from PNG
+					</a>
+				</nav>
+			</div>
+        </div>
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-tabs is-upgraded" data-upgraded=",MaterialLayout">
+			    <main class="mdl-layout__content">
+                
+    			    <div class="mdl-layout__tab-panel is-active" id="index">
+                        
+                        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                            <div class="mdl-layout-spacer"></div>
+                            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                                <div class="mdl-card__title">
+                                    <h4>Editor</h4>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+
+                                    <canvas id="canvas" width="800" height="600" style="border: 2px solid black;"></canvas>
+                                    <form action="#">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                                            <label class="mdl-textfield__label" for="sample4">Number...</label>
+                                            <span class="mdl-textfield__error">Input is not a number!</span>
+                                        </div>
+                                    </form>
+                                    <input type="color" id="head" name="head" value="#e66465">
+                                </div>
+                            </div>
+                            <div class="mdl-layout-spacer"></div>
+                            <div class="mdl-menu__container is-upgraded"><div class="mdl-menu__outline mdl-menu--bottom-right"></div><ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1" data-upgraded=",MaterialMenu">
+                                <li class="mdl-menu__item" tabindex="-1">Lorem</li>
+                                <li class="mdl-menu__item" disabled="" tabindex="-1">Ipsum</li>
+                                <li class="mdl-menu__item" tabindex="-1">Dolor</li>
+                              </ul></div>
+                        </section>
+                    </div>
+                    <div class="mdl-layout__tab-panel" id="nevershown">
+                        <div style="display: none;">
+                            <canvas id="computeCanvas" width="800" height="600" style="border: 2px solid black;"></canvas>
+                        </div>
+                    </div>
+                    <footer class="mdl-mini-footer">
+                        <div class="mdl-mini-footer__left-section">
+                            <div class="mdl-logo">Title</div>
+                            <ul class="mdl-mini-footer__link-list">
+                                <li>
+                                    <a href="#">Help</a>
+                                </li>
+                                <li>
+                                    <a href="#">Privacy & Terms</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </footer>
+			    </main>
+            </div>
+        </div>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+                    
+	</body>
+</html>

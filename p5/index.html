@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="draw_pixel.js"></script>
+        <script src="curve.js"></script>
+        <script src="dda.js"></script>
+        <script src="midpoint.js"></script>
+        <script src="midpoint_circle2.js"></script>
+        <script src="midpoint_ellipse.js"></script>
+    </head>
+    <body>
+        <button type="button" onclick="clear_image();">Clear Image</button><br>
+        <input type="number" id="p1x">
+        <input type="number" id="p1y">&lt;p1x,p1y&gt; OR &lt;CenterX, CenterY&gt;<br>
+        <input type="number" id="p2x">
+        <input type="number" id="p2y">&lt;p2x,p2y&gt; OR &lt;Radius, N/A&gt; OR &lt;RadiusX, RadiusY&gt;<br>
+        <input type="number" id="p3x">
+        <input type="number" id="p3y">&lt;p3x,p3y&gt;<br>
+        <input type="number" id="p4x">
+        <input type="number" id="p4y">&lt;p4x,p4y&gt;<br>
+        SECTION IMPLEMENTED VARIANTS<br>
+        <button type="button" onclick="draw_bezier();">Draw Bezier</button><button type="button" onclick="draw_hermite();">Draw Hermite</button><br>
+        <button type="button" onclick="draw_spline();">Draw Spline</button><button type="button" onclick="DrawMidpointCircle();">Draw Circle Midpoint</button><br>
+        <button type="button" onclick="draw_midpoint_ellipse();">Draw Midpoint Ellipse</button><button type="button" onclick="draw_midpoint_line();">Draw Midpoint Line</button><br>
+        <button type="button" onclick="draw_dda();">Draw DDA Line</button><br>
+        SECTION PRIMITIVE VARIANTS<br>
+        <button type="button" onclick="bezier_curve_clicker();">Bezier Curve</button><button type="button" onclick="drawEllipse()">Draw Ellipse</button><br>
+        <button type="button" onclick="DrawCircle();">Draw Circle</button><button type="button" onclick="drawLine();">Draw Line</button><br>
+        <canvas id="canvas" width=600 height=400>Canvas is not supported</canvas>
+    </body>
+</html>

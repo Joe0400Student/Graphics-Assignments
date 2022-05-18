@@ -1,0 +1,178 @@
+
+Q1:
+Apply the procedure SPLIT-EQUALS to the premises of the typing rule below, show the results of this procedure, then pass these results to the procedure ADD-SUBTYPING and show the premises that ADD-SUBTYPING generates.
+
+Below, T1 * T2 is, as usual, the product type for pairs (which is T1 x T2 in the textbook).
+Recall that the first argument of -> is contravariant.
+Recall that the second argument of -> is covariant.
+
+Gamma |- e1 : T1 -> T2
+Gamma |- e2 : T2 -> T1
+Gamma |- e3 : T1
+Gamma |- e4 : T2
+------------------------------------------------
+Gamma |- (doubleApply e1 e2 e3 e4) : T2 * T1
+
+
+
+== Remark that is not part of the question ==
+
+Further remark: The exam mentions the operator doubleApply.
+As the question asks you to apply the algorithms that we have seen, understanding what is the behavior of doubleApply is not relevant.
+However, for the sake of giving context:
+
+doubleApply takes in input 2 functions, f1 and f2, and 2 arguments, a1 and a2, and creates the pair ( f2(f1(a1)), f1(f2(a2))),
+that is, the first component of the pair calls f1 with a1 and passes the result to f2, and
+the second component calls f2 with a2 and passes the result to f1.
+
+--------------------------------------------------------------------
+SPLIT-EQUALS generates the premises﻿﻿﻿
+
+Gamma | - e1 : T3 -> T2﻿﻿﻿
+
+Gamma | - e2 :T4 -> T1﻿﻿
+
+Gamma | - e3 :T5
+
+Gamma | - e4 :T6
+
+Map T1 => [T5, T3﻿﻿] , ﻿ T2 => [T4, T6]﻿﻿﻿﻿﻿﻿﻿﻿
+
+----------------------------------
+
+ADD-SUBTYPING generates the premises﻿﻿﻿
+
+Gamma | - e1 : T3 -> T2﻿﻿﻿
+
+Gamma | - e2 :T4 -> T1﻿﻿
+
+Gamma | - e3 :T5
+
+Gamma | - e4 :T6
+
+T5 <: T3 ﻿T6﻿ <: T4﻿﻿﻿
+
+-----------------------------------------------------
+Q2:
+Apply the procedure SPLIT-EQUALS to the premises of the typing rule below, show the results of this procedure, then pass these results to the procedure ADD-SUBTYPING and show the premises that ADD-SUBTYPING generates.
+
+Below, T1 * T2 is, as usual, the product type for pairs (which is T1 x T2 in the textbook).
+Recall that both first and second argument of * are covariant.
+
+Gamma |- e1 : T
+Gamma |- e2 : T * T
+------------------------------------------------
+Gamma |- (addToPairAsList e1 e2) : List T
+
+
+
+
+
+== Remark that is not part of the question ==
+
+Further remark: The exam mentions the operator addToPairAsList.
+As the question asks you to apply the algorithms that we have seen, understanding what is the behavior of addToPairAsList is not relevant.
+However, for the sake of giving context:
+
+addToPairAsList takes in input an element a1 and a pair p and wants to add the element to the pair. As a pair can only contain 2 elements, then addToPairAsList creates a list with three elements instead: the element a1, the first component of p, and the second component of p.
+-----------------------------------------------------------------------------------------------
+SPLIT-EQUALS generates the premises
+
+Gamma |- e1 : T1
+
+Gamma |- e2: T2 * T3
+
+T => [T1, T2, T3]﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿
+
+---------------------------------------------------------
+
+ADD-SUBTYPING generates the premises
+
+
+Gamma |- e1 : T1
+
+Gamma |- e2: T2 * T3
+
+T = T1 U T2 U T3﻿﻿﻿﻿﻿﻿
+-------------------------------------------------------------------------------------------------
+Q3:
+Apply procedures CK-GENERATE-GRAMMAR, CK-CONTINUATION-START, CK-CONTINUATION-MIDDLE, and CK-COMPUTATION-RULES to the following small-step semantics with evaluation contexts, and show what these procedures generate.
+
+Expression ::= (doubleApply E e e e)
+EvalCtx ::= [] | (doubleApply E e e e) | (doubleApply v E e e) | (doubleApply v v E e) | (doubleApply v v v E)
+doubleApply v1 v2 v3 v4 --> <(v2 (v1 v3)), (v1 (v2 v4))>
+
+
+
+
+== Remark that is not part of the question ==
+
+Further remark: The exam mentions the operator doubleApply.
+As the question asks you to apply the algorithms that we have seen, understanding what is the behavior of doubleApply is not relevant.
+However, for the sake of giving context:
+
+doubleApply takes in input 2 functions, f1 and f2, and 2 arguments, a1 and a2, and creates the pair ( f2(f1(a1)), f1(f2(a2))),
+that is, the first component of the pair calls f1 with a1 and passes the result to f2, and
+the second component calls f2 with a2 and passes the result to f1.
+------------------------------------------------------------------------------------------------------------
+CK-GENERATE-GRAMMAR(EvalCtx) generates
+
+Continuation :=  mt | (doubleApply_1 e e e k) | (doubleApply_2 v e e k) | (doubleApply_3 v v e k) | (doubleApply_4 v v v k) 
+
+﻿CK-CONTINUATION-START(Continuations, EvalCtx) generates
+doubleApply E e e e, k --> e1, doubleApply_1 e2 e3 e4 k
+CK-CONTINUATION-MIDDLE(Continuations, EvalCtx) generates
+v, (doubleApply_1 e2 e3 e4 k) --> e2, (doubleApply_2 v e3 e4 k)
+v, (doubleApply_2 v1 e3 e4 k) --> e3, (doubleApply_3 v1 v e4 k)
+v, (doubleApply_3 v1 v2 e4 k) --> e4, (doubleApply_4 v1 v2 v k)
+
+CK-COMPUTATION-RULES(ReductionRules, Continuations) generates 
+
+v4, (doubleApply_4 v1 v2 v3 k)--> <(v2 (v1 v3)), (v1 (v2 v4))>, k
+--------------------------------------------------------------------------------------------------------------
+Q4:
+Provide a ROOT SET and a HEAP SPACE where Reference Counting and Mark-Sweep produce different ROOT SET and HEAP SPACE as results.
+Provide an answer that is different from the answer of the practice questions on the websiste of the course.
+// MAKE SURE TO CHANGE!!!!!!!!!
+
+Answer:
+
+ROOT SET = [ 5 ]
+
+﻿HEAP SPACE = [ 5 | value 3 | 1 ] [ 1 | value 2 | 4 ] [ ﻿4 | value 1 | NIL ﻿] [ 3 | value 4 | 7 ] [ 7 | value 5 | 10] [10 | value 6 | 3 ]
+
+Reference Counting Produces:
+
+ROOT SET = [ 5 ]
+
+﻿HEAP SPACE = [ 5 | value 3 | 1 ] [ 1 | value 2 | 4 ] [ ﻿4 | value 1 | NIL ﻿] [ 3 | value 4 | 7 ] [ 7 | value 5 | 10] [10 | value 6 | 3 ]
+
+Mark-Sweep Produces:
+
+ROOT SET = [5]
+
+HEAP SPACE = [5 | value 3 | 1 ] [ 1 | value 2 | 4 ] [ 4 | value 1 | NIL ]﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿
+
+﻿﻿---------------------------------------------------------------------------------------------------------------
+Q5:
+1) What are the drawbacks of the Reference Counting garbage collection method? (0.1 points)
+2) What are the benefits of the Mark-Sweep method? (0.1 points)
+3) What are the drawbacks of the Mark-Sweep method? (0.1 points)
+//MAKE SURE TO CHANGE!!!!!!!!!!!!
+
+1.) There are two drawbacks, the first is that it updates frequently, taking significant performance overhead. The other drawback is if the object indirectly refers to itself (ie circular linked list) it is unable to understand whether its safe to free.
+
+2.)﻿ The two benefits are the opposite of Reference counting drawbacks. It takes less performance overhead, and it also handles circular references which reference counting cannot easily handle.
+3.)﻿ Mark sweep has two main disadvantages. The first is that the program halts execution whilst it frees memory from use. The other is that it fragments (places items in memory in signifanctly different locations) after many many operations.
+
+
+
+﻿﻿﻿﻿﻿﻿﻿﻿
+
+﻿
+
+
+
+
+
+

@@ -1,0 +1,175 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:lightgray;
+}
+.header{
+    height: 160px;
+    background:#e2e2e2;
+    padding:10px;
+    color: black;
+    margin-left:0px;
+    margin-right:0px;
+    padding-left:0px;
+    padding-right:0px;
+    box-shadow: 0px 10px 5px grey;
+    position: relative;
+    z-index: 0;
+}
+.ribbon-pane{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border-right: 2px solid #b5b5b5;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+    height: 130px;
+    float: left;
+    z-index: 0;
+}
+.ribbon-pane-end{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+    height: 130px;
+    float: left;
+    z-index: 0;
+}
+
+.group-setting{
+    float: none;
+}
+.group-growing-size{
+}
+.group-set-size{
+}
+
+#ribbon-pane-contents{
+    
+    flex-grow: 1;
+    
+}
+
+
+.ribbon-pane-descriptor{
+
+    flex-grow: 0;
+    z-index: 0;
+}
+
+.top-navbar{
+    height: 30px;
+    padding-top: 5px;
+    padding-left: 0px;
+    margin-top: -10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: -5px;
+    background: #4040e5;
+    color: lightgrey;
+    z-index: 0;
+}
+
+.top-navbar-item{
+    background: #4040e5;
+    color: lightgray;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 2px #5a5ac7;
+    padding-right: 5px;
+    border-bottom: 0px;
+    z-index: 0;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px black;
+
+}
+
+.dropdown-element{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    min-width: 100px;
+}
+
+.show{
+    display: block;
+    z-index: 1;
+}
+
+.first{
+    float:left;
+}
+.second{
+    clear:both;
+}
+
+.ribbon-card-toggle{
+    float:left;
+}
+.ribbon-card{
+    float: left;
+    height:100px;
+}
+.offset{
+    z-index: -3;
+    height:100px;
+}
+.workspace{
+    z-index:-3;
+    background-color: lightgray;
+    justify-content: center;
+    text-align: center;
+}
+.workarea{
+    z-index: -2;
+    margin:auto;
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    box-shadow: 0 0px 12px 0 grey ;
+}
+
+.offscreen{
+    display:none;
+    position:fixed;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    background-color: #dfdfdf;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 12px 0 8px -4px black;
+    height: calc(100% - 10px);
+    overflow-y: auto;
+}
+/*E2E2E2*/

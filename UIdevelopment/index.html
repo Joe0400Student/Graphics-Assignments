@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="utilities.js"></script>
+        <!--Used for icons-->
+        <link
+  rel="stylesheet"
+  href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"
+/>
+<script src="Field.js"></script>
+<script src="Transformable.js"></script>
+<script src="Interactable.js"></script>
+<script src="Renderable.js"></script>
+<script src="Layer.js"></script>
+<script src="Shapes.js"></script>
+<script src="Color.js"></script>
+<script src="Program.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="top-navbar">
+                <div class="dropdown">
+                    <button class="top-navbar-item dropdown-button" onclick="show('File');">File</button>
+                    <div id="File" class="dropdown-content" style="min-width:150px;">
+                        <button class="dropdown-element" onclick="exportJson();">Save as JSON</button>
+                        <button onclick="document.getElementById('file_input').click();" class="dropdown-element">Load from JSON</button>
+                        <input type="file" accept="application/json" id="file_input" style="display: none;">
+                        <button class="dropdown-element" onclick="download_image();">Export as PNG</button>
+                        <button class="dropdown-element" onclick="clear();">New Canvas</button>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="top-navbar-item dropdown-button" onclick="show('Edit');">Edit</button>
+                    <div id="Edit" class="dropdown-content" style="min-width:150px;">
+                        <button class="dropdown-element" onclick="undo();">Undo</button>
+                        <button class="dropdown-element" onclick="redo();">Redo</button>
+                        <button class="dropdown-element" onclick="copy();">Copy</button>
+                        <button class="dropdown-element" onclick="paste();">Paste</button>
+                    </div>
+                </div>
+                <button class="top-navbar-item" onclick="autoTesting();">Generate Shapes For Testing</button>
+            </div>
+            <div class="ribbon-pane">
+                <div class="ribbon-pane-contents">
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.SQUARE);">
+                        <i class="ms-Icon ms-Icon--GridViewLarge" style="font-size:60px" aria-hidden="true"></i>
+                        <br>
+                        Square
+                    </button>
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.RECTANGLE);">
+                        <i class="ms-Icon ms-Icon--RectangleShape" style="font-size:60px" aria-hidden="true"></i>
+                        <br>
+                        Rectangle
+                    </button>
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.CIRCLE);">
+                        <i class="ms-Icon ms-Icon--CircleRing" style="font-size:60px" aria-hidden="true"></i><br>
+                        Circle
+                    </button>
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.ELLIPSE);">
+                        <i class="ms-Icon ms-Icon--Ellipse" style="font-size:60px" aria-hidden="true"></i><br>
+                        Ellipse
+                    </button>
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.LINE);">
+                        <i class="ms-Icon ms-Icon--Line" style="font-size:60px;" aria-hidden="true"></i><br>
+                        Line
+                    </button>
+                    <button class="ribbon-card-toggle" onclick="readableProgram.setShape(readableProgram.shape.POLYGON); document.getElementById('number').value = 3;">
+                        <i class="ms-Icon ms-Icon--TriangleShape" style="font-size:60px;" aria-hidden="true"></i><br>
+                        Triangle
+                    </button>
+                    <div class="ribbon-card" style="text-align:center;">
+                        <div class="groups-setting">
+                            <button class="group-growing-size first dropdown">
+                                <i class="ms-Icon ms-Icon--ChartYAngle" style="font-size:60px;"aria-hidden="true" onclick="readableProgram.setShape(readableProgram.shape.ARC);"></i><br>
+                                Arc
+                            </button>
+                            <br>
+                            <div class="dropdown group-set-size second">
+                                <button class="dropdown-button" onclick="show('Arc');"><i class="ms-Icon ms-Icon--ChevronDown" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-content" id="Arc">
+                                    <input class="dropdown-element" id="BeginAngle" style="width:40px;" type="number">Begin Angle</form>
+                                    <input class="dropdown-element" id="EndAngle" style="width: 40px;" type="number">End Angle</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ribbon-card" style="text-align:center;">
+                        <div class="groups-setting">
+                            <button class="group-growing-size first dropdown">
+                                <i class="ms-Icon ms-Icon--Octagon" style="font-size:60px;"aria-hidden="true" onclick="readableProgram.setShape(readableProgram.shape.POLYGON);"></i><br>
+                                Polygon
+                            </button>
+                            <br>
+                            <div class="dropdown group-set-size second">
+                                <button class="dropdown-button" onclick="show('Polygon');"><i class="ms-Icon ms-Icon--ChevronDown" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-content" id="Polygon">
+                                    <input class="dropdown-element" id="number" style="width:40px;" type="number">Sides</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ribbon-pane-descriptor">
+                    Shape Select
+                </div>
+            </div>
+            <div class="ribbon-pane">
+                <div class="ribbon-pane-contents">
+                    <!--<div class="ribbon-card-toggle">
+                        <label for="border">Border Color</label>
+                        <input type='color' id="border">
+                    </div>-->
+                    <div class="ribbon-card-toggle" style="text-align: center;">
+                        <label for="inside"><i class="ms-Icon ms-Icon--BucketColor" aria-hidden="true"></i></label><br>
+                        <input type='color' id="inside">
+                    </div>
+                </div>
+                <div class="ribbon-pane-descriptor">
+                    Color
+                </div>
+            </div>
+            <div class="ribbon-pane">
+                <div class="ribbon-pane-contents">
+                    <button class="ribbon-card-toggle" onclick="togglelayers();"><i class="ms-Icon ms-Icon--MapLayers" style="font-size:60px;" aria-hidden="true"></i><br>Layers</button>
+                </div>
+                <div class="ribbon-pane-descriptor">
+                    Windows
+                </div>
+            </div>
+            <div class="ribbon-pane-end">
+                <div class="ribbon-pane-contents">
+                    <div class="ribbon-card" style="text-align:center;">
+                        <div class="groups-setting">
+                            <button class="ribbon-card-toggle"><i class="ms-Icon ms-Icon--ScaleUp" style="font-size:60px;" aria-hidden="true" onclick="scale_id();"></i><br>Scale</button>
+                            <br>
+                            <div class="dropdown group-set-size second">
+                                <button class="dropdown-button" onclick="show('Scale');"><i class="ms-Icon ms-Icon--ChevronDown" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-content" id="Scale">
+                                    <input class="dropdown-element" id="ScalingFactor" style="width:40px;" type="number">%Scale</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ribbon-card" style="text-align:center;">
+                        <div class="groups-setting">
+                            <button class="ribbon-card-toggle"><i class="ms-Icon ms-Icon--Move" style="font-size: 60px;" aria-hidden="true" onclick="tarnslate_id();"></i><br>Translate</button>
+                            <br>
+                            <div class="dropdown group-set-size second">
+                                <button class="dropdown-button" onclick="show('Translate');"><i class="ms-Icon ms-Icon--ChevronDown" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-content" id="Translate">
+                                    <input class="dropdown-element" id="XChg" style="width:40px;" type="number">X</form>
+                                    <input class="dropdown-element" id="YChg" style="width:40px;" type="number">Y</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ribbon-card" style="text-align:center;">
+                        <div class="groups-setting">
+                            <Button class="ribbon-card-toggle"><i class="ms-Icon ms-Icon--Rotate" style="font-size: 60px;" aria-hidden="true" onclick="rotate_id();"></i><br>Rotate</Button>
+                            <br>
+                            <div class="dropdown group-set-size second">
+                                <button class="dropdown-button" onclick="show('Rotate');"><i class="ms-Icon ms-Icon--ChevronDown" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-content" id="Rotate">
+                                    <input class="dropdown-element" id="RotationAngle" style="width:40px;" type="number">Degrees</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
+                </div>
+                <div class="ribbon-pane-descriptor">
+                    Transformations
+                </div>
+            </div>
+
+        </div>
+        <div class="workspace">
+            <div class="offset"></div>
+            
+            <div class="workarea">
+                <canvas id="canvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+        <div class="offscreen">
+            <canvas id="computeCanvas" width="800" height="600"></canvas>
+        </div>
+        <div id="layersBox" class="sidenav">
+            
+        </div>
+        <div id="image_save_box" style="display:none;">
+        </div>
+    </body>
+</html>

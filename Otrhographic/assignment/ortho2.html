@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fcolor;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+
+void main() 
+{
+    gl_Position = projectionMatrix*modelViewMatrix*vPosition;
+    fcolor = vColor;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fcolor;
+
+void
+main()
+{
+    gl_FragColor = fcolor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="Ortho.js"></script>
+
+<body>
+    <div>
+        depth .05<input id="depthSlider" type="range"
+         min=".05" max="40000" step="0.1" value="2000" />
+         3
+        </div>
+        <div>
+            X 0.05<input id="XSlider" type="range"
+             min="0.05" max="2" step="0.1" value="1" />
+             2
+            </div>
+            <div>
+                Y 0.05<input id="YSlider" type="range"
+                 min="0.05" max="2" step="0.1" value="1" />
+                 2
+                </div>
+                <div>
+                    Z 0.05<input id="ZSlider" type="range"
+                     min="0.05" max="40" step="0.1" value="20" />
+                     40
+                    </div>
+        
+        width 0<input id="widthSlider" type="range"
+         min="0" max="20" step="1" value="10" />
+         20
+        </div>
+        <div>
+        height 0<input id="heightSlider" type="range"
+         min="0" max="20" step="1" value="10" />
+         20
+        </div>
+        bx
+        <input type='number' id="bx"/>
+        by
+        <input type='number' id="by"/>
+        bz
+        <input type='number' id="bz"/>
+        bx
+        <input type='number' id="ax"/>
+        by
+        <input type='number' id="ay"/>
+        bz
+        <input type='number' id="az"/>
+        <button onclick="generateLine(document.getElementById('bx').value,document.getElementById('by').value,document.getElementById('bz').value,document.getElementById('ax').value,document.getElementById('ay').value,document.getElementById('az').value);">draw</button>
+<br>        
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+</body>
+</html>
